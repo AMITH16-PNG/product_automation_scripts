@@ -1,0 +1,5 @@
+base_url: "https://gtaskzdev.giglabz.co.in"
+email: "amith.a@giglabz.com"
+implicit_wait: 5
+otp_manual_wait_secs: 15
+num_resources_to_add: 1

@@ -1,0 +1,61 @@
+"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
+"Test adding resource with new tabbed modal UI
+        
+        13-Step Flow:
+        1. Click Add Resource button
+        2. Enter First Name
+        3. Enter Last Name
+        4. Enter Email
+        5. Enter Phone
+        6. Select 14th July 2022 as joining date
+        7. Select 3 years experience
+        8. Select Python Developer as primary skill
+        9. Select Madhu as reporting manager
+        10. Click Employment tab
+        11. Select GigLabz company, IT department, Senior Software Developer role
+        12. Click Add Resource button (submit)
+        13. Click close icon
+        14. Validate user in list
+        ","132160","test_add_resource_new_flow","tests","Wed Dec 10 18:19:30 IST 2025","passed","Wed Dec 10 18:21:42 IST 2025","TestResourceManagement","test_login_and_add_client","",""
+"Verify OTP page elements are present","0","test_otp_page_elements","tests","Wed Dec 10 18:19:25 IST 2025","skipped","Wed Dec 10 18:19:25 IST 2025","TestLogin","test_login_and_add_client","",""
+"Verify Send OTP button behavior without email","0","test_send_otp_button_disabled_without_email","tests","Wed Dec 10 18:19:25 IST 2025","skipped","Wed Dec 10 18:19:25 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test Go Back functionality from OTP page","0","test_go_back_from_otp_page","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:33 IST 2025","skipped","Wed Dec 10 18:00:33 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test login with invalid email format","0","test_invalid_email_format","tests","Wed Dec 10 18:21:44 IST 2025","skipped","Wed Dec 10 18:21:44 IST 2025","TestLoginNegative","test_login_and_add_client","",""
+"Test entering email and clicking Send OTP","0","test_enter_email_and_send_otp","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:33 IST 2025","skipped","Wed Dec 10 18:00:33 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test Go Back functionality from OTP page","0","test_go_back_from_otp_page","tests","Wed Dec 10 18:19:25 IST 2025","skipped","Wed Dec 10 18:19:25 IST 2025","TestLogin","test_login_and_add_client","",""
+"Verify OTP page elements are present","0","test_otp_page_elements","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:33 IST 2025","skipped","Wed Dec 10 18:00:33 IST 2025","TestLogin","test_login_and_add_client","",""
+"Verify that login page loads correctly","0","test_login_page_loads","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:33 IST 2025","skipped","Wed Dec 10 18:00:33 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test login with empty email field","0","test_empty_email","gtaskz_selenium_framework.tests","Wed Dec 10 18:02:51 IST 2025","skipped","Wed Dec 10 18:02:51 IST 2025","TestLoginNegative","test_login_and_add_client","",""
+"Test complete login flow with manual OTP entry
+        
+        This test requires manual OTP entry from the user.
+        The test will wait for the configured time for manual input.
+        ","0","test_complete_login_with_manual_otp","tests","Wed Dec 10 18:19:25 IST 2025","skipped","Wed Dec 10 18:19:25 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test adding resource with new tabbed modal UI
+        
+        13-Step Flow:
+        1. Click Add Resource button
+        2. Enter First Name
+        3. Enter Last Name
+        4. Enter Email
+        5. Enter Phone
+        6. Select 14th July 2022 as joining date
+        7. Select 3 years experience
+        8. Select Python Developer as primary skill
+        9. Select Madhu as reporting manager
+        10. Click Employment tab
+        11. Select GigLabz company, IT department, Senior Software Developer role
+        12. Click Add Resource button (submit)
+        13. Click close icon
+        14. Validate user in list
+        ","132300","test_add_resource_new_flow","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:37 IST 2025","passed","Wed Dec 10 18:02:49 IST 2025","TestResourceManagement","test_login_and_add_client","",""
+"Test login with invalid email format","0","test_invalid_email_format","gtaskz_selenium_framework.tests","Wed Dec 10 18:02:51 IST 2025","skipped","Wed Dec 10 18:02:51 IST 2025","TestLoginNegative","test_login_and_add_client","",""
+"Verify Send OTP button behavior without email","0","test_send_otp_button_disabled_without_email","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:33 IST 2025","skipped","Wed Dec 10 18:00:33 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test entering email and clicking Send OTP","0","test_enter_email_and_send_otp","tests","Wed Dec 10 18:19:25 IST 2025","skipped","Wed Dec 10 18:19:25 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test login with empty email field","0","test_empty_email","tests","Wed Dec 10 18:21:44 IST 2025","skipped","Wed Dec 10 18:21:44 IST 2025","TestLoginNegative","test_login_and_add_client","",""
+"Verify that login page loads correctly","0","test_login_page_loads","tests","Wed Dec 10 18:19:25 IST 2025","skipped","Wed Dec 10 18:19:25 IST 2025","TestLogin","test_login_and_add_client","",""
+"Test complete login flow with manual OTP entry
+        
+        This test requires manual OTP entry from the user.
+        The test will wait for the configured time for manual input.
+        ","0","test_complete_login_with_manual_otp","gtaskz_selenium_framework.tests","Wed Dec 10 18:00:33 IST 2025","skipped","Wed Dec 10 18:00:33 IST 2025","TestLogin","test_login_and_add_client","",""
