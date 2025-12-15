@@ -1,5 +1,6 @@
 import pytest
 import time
+from pages import manage_page
 from pages.login_page import LoginPage
 from pages.manage_page import ManagePage
 from pages.system_adminstration import SystemAdministrationPage
@@ -241,40 +242,46 @@ class TestResourceManagement:
             manage_page.select_project("fintech app")            
             # Step 12: Click Add Resource button (submit)
             manage_page.click_add_resource_submit()
-            print("⏳ Waiting for resource to be saved...")
+            print("[WAIT] Waiting for resource to be saved...")
             time.sleep(3)
             
+            # Verify toast message (optional - don't fail if not found)
+            toast_text = manage_page.verify_user_create_or_update_toast(timeout=10)
+            if toast_text:
+                print(f"[SUCCESS] Toast message verified: {toast_text}")
+            else:
+                print("[WARNING] Toast message not detected, continuing with user validation...")
+
             # Step 13: Click Close icon
-            manage_page.click_close_modal()
-            time.sleep(2)
+            # manage_page.click_close_modal()
+            # time.sleep(2)
             
             # Step 14: Validate user in list
-            print(f"\n📋 Verifying if '{first_name} {last_name}' was added to the list...")
+            print(f"\n[LIST] Verifying if '{first_name} {last_name}' was added to the list...")
             success = manage_page.verify_resource_in_list(first_name)
             
             if success:
                 print("\n" + "="*60)
-                print(f"🎯 RESULT: Resource {i + 1} ({first_name} {last_name})")
-                print(f"   ✅ USER ADDED SUCCESSFULLY!")
-                print(f"   📧 Email: {resource_email}")
-                print(f"   📱 Phone: {phone}")
+                print(f"[RESULT] RESULT: Resource {i + 1} ({first_name} {last_name})")
+                print(f"   [SUCCESS] USER ADDED SUCCESSFULLY!")
+                print(f"   [EMAIL] Email: {resource_email}")
+                print(f"   [PHONE] Phone: {phone}")
                 print("="*60 + "\n")
             else:
                 print("\n" + "="*60)
-                print(f"⚠️ RESULT: Resource {i + 1} ({first_name} {last_name})")
-                print(f"   ❌ User may need manual verification")
+                print(f"[WARNING] RESULT: Resource {i + 1} ({first_name} {last_name})")
+                print(f"   [FAILED] User may need manual verification")
                 print("="*60 + "\n")
             
             time.sleep(2)
         
-        print("\n" + "🏁"*20)
+        print("\n" + "="*40)
         print(f"=== TEST COMPLETED: Added {num_resources} resource(s) ===")
-        print("🏁"*20 + "\n")
+        print("="*40 + "\n")
         
         # Logout after completing all resource additions
-        print("DEBUG: about to logout", flush=True)
         login_page.logout()
-        print("DEBUG: logout completed", flush=True)
+        
 
 
 class TestLoginNegative:

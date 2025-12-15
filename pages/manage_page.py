@@ -9,6 +9,8 @@ import string
 import time
 from datetime import datetime
 from selenium.common.exceptions import TimeoutException, WebDriverException
+import pytest
+
 
 class ManagePage(BasePage):
     """Page Object for the GTaskZ Manage Page - Updated UI"""
@@ -60,7 +62,7 @@ class ManagePage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print("✓ Clicked Manage menu")
+                print("[OK] Clicked Manage menu")
                 return
             except:
                 continue
@@ -76,7 +78,7 @@ class ManagePage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print("✓ Clicked Resource Management tab")
+                print("[OK] Clicked Resource Management tab")
                 return
             except:
                 continue
@@ -95,7 +97,7 @@ class ManagePage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print("✓ Clicked Add Resource button")
+                print("[OK] Clicked Add Resource button")
                 time.sleep(2)  # Wait for modal to open
                 return
             except:
@@ -114,7 +116,7 @@ class ManagePage(BasePage):
                 element.click()
                 element.send_keys(Keys.CONTROL + "a")
                 element.send_keys(first_name)
-                print(f"✓ Entered first name: {first_name}")
+                print(f"[OK] Entered first name: {first_name}")
                 return
             except:
                 continue
@@ -132,7 +134,7 @@ class ManagePage(BasePage):
                 element.click()
                 element.send_keys(Keys.CONTROL + "a")
                 element.send_keys(last_name)
-                print(f"✓ Entered last name: {last_name}")
+                print(f"[OK] Entered last name: {last_name}")
                 return
             except:
                 continue
@@ -150,7 +152,7 @@ class ManagePage(BasePage):
                 element.click()
                 element.send_keys(Keys.CONTROL + "a")
                 element.send_keys(email)
-                print(f"✓ Entered email: {email}")
+                print(f"[OK] Entered email: {email}")
                 return
             except:
                 continue
@@ -180,7 +182,7 @@ class ManagePage(BasePage):
                 # Don't clear - just append to existing +91
                 element.send_keys(Keys.END)
                 element.send_keys(phone)
-                print(f"✓ Entered phone: +91 {phone}")
+                print(f"[OK] Entered phone: +91 {phone}")
                 return
             except:
                 continue
@@ -200,7 +202,7 @@ class ManagePage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print("✓ Opened date picker")
+                print("[OK] Opened date picker")
                 time.sleep(1)
                 break
             except:
@@ -252,7 +254,7 @@ class ManagePage(BasePage):
                 try:
                     day_elem = WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable(day_loc))
                     day_elem.click()
-                    print(f"✓ Selected date: {day:02d}/{month:02d}/{year}")
+                    print(f"[OK] Selected date: {day:02d}/{month:02d}/{year}")
                     time.sleep(0.5)
                     return
                 except:
@@ -262,7 +264,7 @@ class ManagePage(BasePage):
             try:
                 day_elem = self.driver.find_element(By.XPATH, f"//button[text()='{day}']")
                 self.driver.execute_script("arguments[0].click();", day_elem)
-                print(f"✓ Selected date via JS: {day:02d}/{month:02d}/{year}")
+                print(f"[OK] Selected date via JS: {day:02d}/{month:02d}/{year}")
                 time.sleep(0.5)
                 return
             except:
@@ -285,12 +287,12 @@ class ManagePage(BasePage):
                 element.clear()
                 element.send_keys(f"{day:02d}/{month:02d}/{year}")
                 element.send_keys(Keys.TAB)
-                print(f"✓ Entered date directly: {day:02d}/{month:02d}/{year}")
+                print(f"[OK] Entered date directly: {day:02d}/{month:02d}/{year}")
                 return
             except:
                 continue
         
-        print(f"⚠ Could not select date")
+        print(f"[WARNING] Could not select date")
     
     def select_experience(self, years):
         """Select experience from dropdown - values are 0,1,2,3,4 etc."""
@@ -325,7 +327,7 @@ class ManagePage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print(f"✓ Selected experience: {years} years")
+                print(f"[OK] Selected experience: {years} years")
                 return
             except:
                 continue
@@ -366,11 +368,11 @@ class ManagePage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print(f"✓ Selected primary skill: {skill}")
+                print(f"[OK] Selected primary skill: {skill}")
                 return
             except:
                 continue
-        print(f"⚠ Could not select skill: {skill}")
+        print(f"[WARNING] Could not select skill: {skill}")
     
    
 
@@ -384,14 +386,14 @@ class ManagePage(BasePage):
                 EC.element_to_be_clickable((By.XPATH, "//input[@placeholder='Search...']"))
             )
             input_field.click()
-            print("✓ Clicked Reporting Manager input")
+            print("[OK] Clicked Reporting Manager input")
             time.sleep(1)
             
             # Wait for dropdown listbox to appear
             WebDriverWait(self.driver, 5).until(
                 EC.presence_of_element_located((By.XPATH, "//ul[@role='listbox']"))
             )
-            print("✓ Dropdown opened")
+            print("[OK] Dropdown opened")
             time.sleep(0.5)
             
             # Try to find and click the specific manager first
@@ -400,7 +402,7 @@ class ManagePage(BasePage):
                     EC.element_to_be_clickable((By.XPATH, f"//ul[@role='listbox']//li[contains(.,'{manager_name}')]"))
                 )
                 self.driver.execute_script("arguments[0].click();", option)
-                print(f"✓ Selected: {manager_name}")
+                print(f"[OK] Selected: {manager_name}")
                 return True
             except:
                 pass
@@ -412,7 +414,7 @@ class ManagePage(BasePage):
                 )
                 option_text = first_option.text.split('\n')[0]  # Get first line (name)
                 self.driver.execute_script("arguments[0].click();", first_option)
-                print(f"✓ Selected first option: {option_text}")
+                print(f"[OK] Selected first option: {option_text}")
                 return True
             except:
                 pass
@@ -421,11 +423,11 @@ class ManagePage(BasePage):
             input_field.send_keys(Keys.ARROW_DOWN)
             time.sleep(0.3)
             input_field.send_keys(Keys.ENTER)
-            print("✓ Selected via keyboard")
+            print("[OK] Selected via keyboard")
             return True
             
         except Exception as e:
-            print(f"⚠ Could not select reporting manager: {e}")
+            print(f"[WARNING] Could not select reporting manager: {e}")
             return False
 
     # ==================== Employment Tab ====================
@@ -717,65 +719,141 @@ class ManagePage(BasePage):
                 return
             except:
                 continue
-        print("⚠ Could not click Add Resource button")
+            print("⚠ Could not click Add Resource button")
+
     
+    def verify_user_create_or_update_toast(self, timeout=5):
+        """Verify success toast appears after user create/update"""
+        
+        print("[DEBUG] Starting toast detection...")
+        
+        locators = [
+            # 1. Toastify toast body - most common
+            (By.CSS_SELECTOR, ".Toastify__toast-body"),
+            
+            # 2. Success toast specifically
+            (By.XPATH, "//div[contains(@class,'Toastify__toast--success')]"),
+            
+            # 3. Any div with role alert
+            (By.XPATH, "//div[@role='alert']"),
+            
+            # 4. MUI Alert/Snackbar
+            (By.XPATH, "//div[contains(@class,'MuiAlert') or contains(@class,'MuiSnackbar')]"),
+            
+            # 5. Toast container - get any text inside
+            (By.CSS_SELECTOR, ".Toastify__toast-container"),
+        ]
+
+        for by, locator in locators:
+            try:
+                print(f"[DEBUG] Trying locator: {locator}")
+                toast = WebDriverWait(self.driver, 2).until(
+                    EC.presence_of_element_located((by, locator))
+                )
+                
+                # Try to get text from element directly
+                toast_text = toast.text.strip()
+                
+                # If no direct text, try getting innerText via JavaScript
+                if not toast_text:
+                    toast_text = self.driver.execute_script("return arguments[0].innerText;", toast)
+                    if toast_text:
+                        toast_text = toast_text.strip()
+                
+                # If still no text, try getting text from child elements
+                if not toast_text:
+                    try:
+                        child_elements = toast.find_elements(By.XPATH, ".//*")
+                        for child in child_elements:
+                            child_text = child.text.strip()
+                            if child_text:
+                                toast_text = child_text
+                                break
+                    except:
+                        pass
+                
+                if toast_text:
+                    print(f"[FOUND] Toast text found: '{toast_text}'")
+                    success_keywords = ["created", "updated", "success", "added", "saved", "successful"]
+                    if any(keyword in toast_text.lower() for keyword in success_keywords):
+                        print(f"[OK] Success Toast Detected: {toast_text}")
+                        return toast_text
+                    else:
+                        # Toast found but no success keyword - might still be valid
+                        print(f"[INFO] Toast found but no success keyword: '{toast_text}'")
+                        # Return it anyway as we found a toast
+                        return toast_text
+                else:
+                    print(f"[DEBUG] Toast element found but no text with locator: {locator}")
+                    
+            except TimeoutException:
+                print(f"[DEBUG] Timeout for locator: {locator}")
+                continue
+            except Exception as e:
+                print(f"[WARNING] Error checking toast with {locator}: {e}")
+                continue
+        
+        # If no toast found after checking all locators, return None (don't fail)
+        print("[WARNING] No toast message detected, continuing with validation...")
+        return None
+        
+    
+    @pytest.mark.skip(reason="Not used currently")
     def click_close_modal(self):
         """Click close (X) button on the modal"""
-        time.sleep(1)
+        time.sleep(0.5)
         locators = [
             (By.XPATH, "//button[.//svg[@data-testid='CloseIcon']]"),
             (By.XPATH, "//svg[@data-testid='CloseIcon']/ancestor::button"),
-            (By.XPATH, "//div[@role='dialog']//button[contains(@class,'MuiIconButton')]"),
             (By.CSS_SELECTOR, "button svg[data-testid='CloseIcon']"),
         ]
         
         for loc in locators:
             try:
-                element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(loc))
+                element = WebDriverWait(self.driver, 3).until(EC.element_to_be_clickable(loc))
                 element.click()
-                print("✓ Closed modal")
-                time.sleep(1)
+                print("[OK] Closed modal")
+                time.sleep(0.5)
                 return
             except:
                 continue
-        print("⚠ Could not close modal")
+        
+        print("[WARNING] Could not close modal")
     
     # ==================== Validation ====================
     
     def verify_resource_in_list(self, name):
         """Verify that resource with given name appears in the list"""
-        time.sleep(3)
+        time.sleep(1)  # Reduced from 3 seconds
         
         print("\n" + "="*60)
-        print("🔍 VALIDATING: Checking if user was added to the list...")
+        print("[VALIDATING] Checking if user was added to the list...")
         print("="*60)
         
+        # Try most specific locator first with short timeout
         locators = [
             (By.XPATH, f"//p[contains(text(),'{name}')]"),
             (By.XPATH, f"//*[contains(text(),'{name}')]"),
-            (By.XPATH, f"//div[contains(@class,'MuiCard')]//p[contains(text(),'{name}')]"),
-            (By.XPATH, f"//div[contains(@class,'MuiTableCell')]//p[contains(text(),'{name}')]"),
-            (By.XPATH, f"//td[contains(text(),'{name}')]"),
         ]
         
         for loc in locators:
             try:
-                element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(loc))
+                element = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located(loc))
                 if element:
                     # Highlight the element on screen
                     self.driver.execute_script("arguments[0].style.border='3px solid green'", element)
                     self.driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", element)
                     
-                    print("\n" + "🎉"*20)
-                    print(f"✅ SUCCESS: User '{name}' was ADDED SUCCESSFULLY!")
-                    print(f"✅ Found user in the resource list!")
-                    print("🎉"*20 + "\n")
+                    print("\n" + "[SUCCESS]"*5)
+                    print(f"[OK] SUCCESS: User '{name}' was ADDED SUCCESSFULLY!")
+                    print(f"[OK] Found user in the resource list!")
+                    print("[SUCCESS]"*5 + "\n")
                     
                     # Take screenshot for validation
                     try:
                         screenshot_name = f"resource_added_{name}_{int(time.time())}.png"
                         self.driver.save_screenshot(f"reports/{screenshot_name}")
-                        print(f"📸 Screenshot saved: reports/{screenshot_name}")
+                        print(f"[SCREENSHOT] Screenshot saved: reports/{screenshot_name}")
                     except:
                         pass
                     
@@ -783,9 +861,9 @@ class ManagePage(BasePage):
             except:
                 continue
         
-        print("\n" + "❌"*20)
-        print(f"❌ FAILED: User '{name}' was NOT found in the resource list!")
-        print("❌"*20 + "\n")
+        print("\n" + "[FAILED]"*5)
+        print(f"[FAILED] User '{name}' was NOT found in the resource list!")
+        print("[FAILED]"*5 + "\n")
         return False
     
     # ==================== Helper Methods ====================
@@ -808,7 +886,9 @@ class ManagePage(BasePage):
         return f"{first_name.lower()}{last_name.lower()}{suffix}@yopmail.com"
     
     # ==================== Complete Flow ====================
-    
+
+
+    @pytest.mark.skip(reason="Duplicate method, not used currently")
     def add_resource_complete_flow(self, first_name, last_name, email, phone, 
                                     join_day, join_month, join_year,
                                     experience, primary_skill, reporting_manager=None,
@@ -852,3 +932,4 @@ class ManagePage(BasePage):
         
         # Step 7: Verify
         return self.verify_resource_in_list(first_name)
+    

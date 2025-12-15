@@ -37,9 +37,11 @@ class SystemAdministrationPage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 5).until(EC.element_to_be_clickable(loc))
                 self.driver.execute_script("arguments[0].scrollIntoView(true);", element)
+                # FAIL in many real UI cases because the element is not visible or not in viewport
+                # ElementNotInteractableException, ElementClickInterceptedException
                 time.sleep(0.3)
                 element.click()
-                print("✓ Clicked System Administration menu")
+                print("[OK] Clicked System Administration menu")
                 return True
             except:
                 continue
@@ -49,10 +51,12 @@ class SystemAdministrationPage(BasePage):
             try:
                 element = WebDriverWait(self.driver, 3).until(EC.presence_of_element_located(loc))
                 self.driver.execute_script("arguments[0].click();", element)
-                print("✓ Clicked System Administration menu (JS)")
+                # Bypasses Selenium’s normal .click(), Directly triggers the DOM click event using JavaScript
+                # Aviods Visibility/Interactable issues
+                print("[OK] Clicked System Administration menu (JS)")
                 return True
             except:
                 continue
         
-        print("⚠ Could not click System Administration menu")
+        print("[WARNING] Could not click System Administration menu")
         return False

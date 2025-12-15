@@ -152,8 +152,10 @@ class LoginPage(BasePage):
 
     def logout(self):
         """Logout from the application"""
+        import sys
         try:
-            print("DEBUG: Attempting to logout...")
+            sys.stdout.write("DEBUG: Attempting to logout...\n")
+            sys.stdout.flush()
             
             # Wait for page to be stable
             time.sleep(2)
@@ -164,9 +166,11 @@ class LoginPage(BasePage):
                     EC.element_to_be_clickable(self.PROFILE_CLICK)
                 )
                 profile_elem.click()
-                print("✓ Clicked profile dropdown")
+                sys.stdout.write("[OK] Clicked profile dropdown\n")
+                sys.stdout.flush()
             except Exception as e:
-                print(f"⚠ Could not find profile dropdown: {e}")
+                sys.stdout.write(f"[WARNING] Could not find profile dropdown: {e}\n")
+                sys.stdout.flush()
                 return
             
             time.sleep(1)  # Wait for dropdown menu to appear
@@ -177,23 +181,29 @@ class LoginPage(BasePage):
                     EC.element_to_be_clickable(self.LOGOUT)
                 )
                 logout_elem.click()
-                print("✓ Clicked Logout")
+                sys.stdout.write("[OK] Clicked Logout\n")
+                sys.stdout.flush()
             except Exception as e:
-                print(f"⚠ Could not find Logout button: {e}")
+                sys.stdout.write(f"[WARNING] Could not find Logout button: {e}\n")
+                sys.stdout.flush()
                 # Try alternative locator
                 try:
                     logout_elem = self.driver.find_element(By.XPATH, "//li[@role='menuitem']//p[text()='Logout']")
                     logout_elem.click()
-                    print("✓ Clicked Logout (alternative)")
+                    sys.stdout.write("[OK] Clicked Logout (alternative)\n")
+                    sys.stdout.flush()
                 except:
-                    print("⚠ Logout element not found")
+                    sys.stdout.write("[WARNING] Logout element not found\n")
+                    sys.stdout.flush()
                     return
             
             time.sleep(2)
-            print("✓ Logout completed")
+            sys.stdout.write("[OK] Logout completed\n")
+            sys.stdout.flush()
             
         except Exception as e:
-            print(f"⚠ Logout failed: {e}")
+            sys.stdout.write(f"[WARNING] Logout failed: {e}\n")
+            sys.stdout.flush()
 
 
 
